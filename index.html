@@ -16,6 +16,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/brands.css" integrity="sha384-BKw0P+CQz9xmby+uplDwp82Py8x1xtYPK3ORn/ZSoe6Dk3ETP59WCDnX+fI1XCKK" crossorigin="anonymous">																																																	 
+<link rel="stylesheet" href="./leaflet/leaflet.css" />
 <style>
 body {font-family: "Lato", sans-serif}
 .mySlides {display: none}
@@ -299,7 +300,7 @@ body {font-family: "Lato", sans-serif}
 	  </div>
   </div>
   <!-- Add Google Maps -->
-  <div id="googleMap" style="height:400px;" class="w3-grayscale-max"></div>
+  <div id="map" style="height:400px;" class="w3-grayscale-max"></div>
 <!-- End Page Content -->
 </div>
 
@@ -309,23 +310,9 @@ body {font-family: "Lato", sans-serif}
   <a href="https://www.instagram.com/keizer_sports/"><i class="fab fa-instagram w3-hover-opacity"></i></a>
 </footer>
 
+<!-- Open Maps -->
+<script src="./leaflet/leaflet.js"></script>
 <script>
-// Automatic Slideshow - change image every 4 seconds
-var myIndex = 0;
-carousel();
-
-function carousel() {
-    var i;
-    var x = document.getElementsByClassName("mySlides");
-    for (i = 0; i < x.length; i++) {
-       x[i].style.display = "none";  
-    }
-    myIndex++;
-    if (myIndex > x.length) {myIndex = 1}    
-    x[myIndex-1].style.display = "block";  
-    setTimeout(carousel, 4000);    
-}
-
 // Used to toggle the menu on small screens when clicking on the menu button
 function toggleFunction() {
     var x = document.getElementById("navDemo");
@@ -344,28 +331,12 @@ window.onclick = function(event) {
   }
 }
 
-function myMap() {
-  myCenter=new google.maps.LatLng(51.85439588861394, 5.83712747590589); 
-  var mapOptions= {
-    center:myCenter,
-    zoom:13, scrollwheel: false, draggable: false,
-    mapTypeId:google.maps.MapTypeId.ROADMAP
-  };
-  var map=new google.maps.Map(document.getElementById("googleMap"),mapOptions);
+var map = L.map('map').setView([51.8543, 5.8371], 15);
+L.tileLayer('https://api.maptiler.com/maps/openstreetmap/{z}/{x}/{y}.jpg?key=GyCl30hmfhxJNlPtwIr2', {
+	attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>',
+}).addTo(map);
+var marker = L.marker([51.85439588861394, 5.83712747590589]).addTo(map);
 
-  var marker = new google.maps.Marker({
-    position: myCenter,
-  });
-  
-  marker.addListener('click', function() {
-    map.setZoom(15);
-    map.setCenter(marker.getPosition());
-  });
-  
-  marker.setMap(map);
-
-}
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7CGwLEdT6q1FiOjysqKYM5XSnXgEQRLs&callback=myMap"></script>
 </body>
 </html>
