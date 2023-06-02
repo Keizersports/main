@@ -55,8 +55,12 @@ body {font-family: "Lato", sans-serif}
 <!-- Page content -->
 <div class="w3-content" style="max-width:2000px;margin-top:46px">
 
- <div class="w3-display-container w3-center"> <!-- w3-hide-small --> 
-    <img alt="homepage picture" src="./pictures/home.jpg" style="width:100%">
+ <div class="w3-display-container w3-center w3-grayscale-max"> <!-- w3-hide-small --> 
+    <img alt="homepage picture" class="mySlides" src="./pictures/home2.jpg" style="width:100%">
+	<img alt="homepage picture 2" class="mySlides" src="./pictures/home3.jpg" style="width:100%">
+	<img alt="homepage picture 3" class="mySlides" src="./pictures/home4.jpg" style="width:100%">
+	<img alt="homepage picture 4" class="mySlides" src="./pictures/home5.jpg" style="width:100%">
+	<img alt="homepage picture 5" class="mySlides" src="./pictures/home6.jpg" style="width:100%">
     <div class="w3-display-topmiddle w3-container w3-text-white w3-padding-small w3-hide-small"></div>
   </div>
 
@@ -73,11 +77,11 @@ body {font-family: "Lato", sans-serif}
 	Het is zijn persoonlijk doel om iedereen met een fantastisch gevoel naar huis te kunnen sturen. Met die reden heeft Jerry in mei 2016 zijn eigen gym opgericht. 
 	Doormiddel van het geven van bootcamps, circuit training en bokszak training helpt Jerry iedereen zijn doel te bereiken.</p> -->
 	<p>
-	Het bloed kruipt waar het niet gaan kan.<br>
+	<b>Het bloed kruipt waar het niet gaan kan</b><br>
 	Jerry, de oprichter van Keizer Sports, trok na enige twijfel de stoute schoenen aan in 2015, en solliciteerde op een vacature voor kickboksleraar. Een klein jaar later – in 2016 – schrijft hij zichzelf in als Keizer Sports bij de Kamer van Koophandel. De zeven maanden lesgeven smaakten naar meer.
 	</p>
 	<p>
-	Jong geleerd is oud gedaan.<br>
+	<b>Jong geleerd is oud gedaan</b><br>
 	Als jochie van acht kon je Jerry al met bokschandschoenen aan vinden. Eerst deed hij dit in combinatie met voetballen, maar de twee sporten waren op een gegeven moment niet meer te combineren. Hij koos voor voetballen. Een lange tijd voetbalde hij zelfs vijf dagen in de week... tot nare, langdurige blessures roet in het eten gooiden.
 	</p>
 	<p>
@@ -86,7 +90,7 @@ body {font-family: "Lato", sans-serif}
 	<div class="w3-row-padding">
 		<div class="w3-card w3-center w3-border w3-round-xlarge">
 			<div class="w3-padding-16">
-				<img class="w3-circle" src="pictures/jerry2.jpg" alt="Jerry" style="width:40%">
+				<img class="w3-circle w3-grayscale-max" src="pictures/jerry2.jpg" alt="Jerry" style="width:40%">
 				<h2>Jerry</h2>
 				<p class="w3-wide">Oprichter / Trainer</p>
 			</div>
@@ -339,6 +343,21 @@ L.tileLayer('https://api.maptiler.com/maps/openstreetmap/{z}/{x}/{y}.jpg?key=GyC
 	attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>',
 }).addTo(map);
 var marker = L.marker([51.825332, 5.815348]).addTo(map);
+
+var myIndex = 0;
+carousel();
+
+function carousel() {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  myIndex++;
+  if (myIndex > x.length) {myIndex = 1}    
+  x[myIndex-1].style.display = "block";  
+  setTimeout(carousel, 6000); // Change image every 2 seconds
+}
 
 </script>
 </body>
